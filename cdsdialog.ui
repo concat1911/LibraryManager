@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CDsDialog</class>
+ <widget class="QDialog" name="CDsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>671</width>
+    <height>472</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>430</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Confirm</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="message">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>631</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Message</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>651</width>
+     <height>391</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>name</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="cdName"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_10">
+        <item>
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>category</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cdCategory">
+          <item>
+           <property name="text">
+            <string>Action</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Adventure</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Comedy</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Crime</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Drama</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Fantasy</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Historical</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Historical fiction</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Horror</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Magical realism</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Mystery</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Paranoid fiction</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Philosophical</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Political</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Romance</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Saga</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Satire</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Science fiction</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Social</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Speculative</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Thriller</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Urban</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Western</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_11">
+        <item>
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>author</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="cdAuthor"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_12">
+        <item>
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>language</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cdLanguage">
+          <item>
+           <property name="text">
+            <string>German</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>French</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>English</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Russian</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Spanish</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Chinese</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Vietnamese</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_13">
+        <item>
+         <widget class="QLabel" name="label_13">
+          <property name="text">
+           <string>quantity</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="cdQuantity"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_14">
+        <item>
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>format</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cdFormat">
+          <item>
+           <property name="text">
+            <string>Vinyl</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>CD/DVD</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Blu-ray</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Cassette</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>VHS</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Floppy Disk	</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>File</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>FLAC</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>FLV</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>AVI</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MP3</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MPEG Video	</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Album</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_15">
+        <item>
+         <widget class="QLabel" name="label_15">
+          <property name="text">
+           <string>length</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="cdLength"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_16">
+        <item>
+         <widget class="QLabel" name="label_16">
+          <property name="text">
+           <string>size</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="cdSize"/>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

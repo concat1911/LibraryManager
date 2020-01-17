@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BookDialog</class>
+ <widget class="QDialog" name="BookDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>680</width>
+    <height>484</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>440</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Confirm</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="message">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>631</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Message</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>651</width>
+     <height>391</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>name</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="bookName"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <item>
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>category</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="bookCategory">
+          <item>
+           <property name="text">
+            <string>Action</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Adventure</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Comedy</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Crime</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Drama</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Fantasy</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Historical</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Historical fiction</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Horror</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Magical realism</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Mystery</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Paranoid fiction</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Philosophical</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Political</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Romance</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Saga</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Satire</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Science fiction</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Social</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Speculative</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Thriller</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Urban</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Western</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>author</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="bookAuthor"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>language</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="bookLanguage">
+          <item>
+           <property name="text">
+            <string>German</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>French</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>English</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Russian</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Spanish</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Chinese</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Vietnamese</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>quantity</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="bookQuantity"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>format</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="bookFormat">
+          <item>
+           <property name="text">
+            <string>PDF</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>PAPER</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>EPUB</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>MOBI</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TXT</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>DOC/DOCX</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>DJVU</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>KINDLE</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>PRC</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>HTML/XML</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item>
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>page</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="bookPage"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_9">
+        <item>
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>ISBN</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="bookISBN"/>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="hasDigital">
+      <property name="text">
+       <string>has Digital</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
