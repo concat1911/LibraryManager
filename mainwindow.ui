@@ -35,9 +35,9 @@
    <widget class="QPushButton" name="addMedianBtn">
     <property name="geometry">
      <rect>
-      <x>740</x>
+      <x>720</x>
       <y>20</y>
-      <width>121</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -48,9 +48,9 @@
    <widget class="QPushButton" name="addCDsBtn">
     <property name="geometry">
      <rect>
-      <x>870</x>
+      <x>820</x>
       <y>20</y>
-      <width>121</width>
+      <width>101</width>
       <height>31</height>
      </rect>
     </property>
@@ -155,9 +155,9 @@
    <widget class="QPushButton" name="addPersonBtn">
     <property name="geometry">
      <rect>
-      <x>1000</x>
+      <x>930</x>
       <y>20</y>
-      <width>121</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -170,12 +170,25 @@
      <rect>
       <x>624</x>
       <y>20</y>
-      <width>111</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
      <string>Refresh</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="searchBtn">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>20</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Search</string>
     </property>
    </widget>
    <zorder>tabWidget</zorder>
@@ -184,6 +197,7 @@
    <zorder>addCDsBtn</zorder>
    <zorder>addPersonBtn</zorder>
    <zorder>refreshBtn</zorder>
+   <zorder>searchBtn</zorder>
   </widget>
  </widget>
  <resources/>

@@ -9,6 +9,7 @@
 //LIBRARY
 #include "bookdialog.h"
 #include "cdsdialog.h"
+#include "persondialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,13 +30,17 @@ private slots:
     void on_addMedianBtn_clicked();
     void on_addCDsBtn_clicked();
     void on_refreshBtn_clicked();
+    void on_addPersonBtn_clicked();
 
 private:
     Ui::MainWindow *ui;
     DatabaseController *db;
     BookDialog *bookDialog;
     CDsDialog *cdsDialog;
+    PersonDialog *personDialog;
+
 private:
     void LoadBooks();
+    void LoadPerson();
 };
 #endif // MAINWINDOW_H

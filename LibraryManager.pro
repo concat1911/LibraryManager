@@ -22,7 +22,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     median.cpp \
-    person.cpp
+    person.cpp \
+    persondialog.cpp
 
 HEADERS += \
     bookdialog.h \
@@ -30,12 +31,14 @@ HEADERS += \
     databasecontroller.h \
     mainwindow.h \
     median.h \
-    person.h
+    person.h \
+    persondialog.h
 
 FORMS += \
     bookdialog.ui \
     cdsdialog.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    persondialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

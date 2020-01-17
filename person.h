@@ -2,6 +2,7 @@
 #define PERSON_H
 
 #include "QString"
+#include "databasecontroller.h"
 
 class Person
 {
@@ -9,9 +10,16 @@ class Person
     QString lastName;
     QString email;
     QString contact;
-    QString libraryNumber;
+    QString type;
+
 public:
-    Person();
+    DatabaseController *db;
+
+public:
+    Person(QString objFName, QString objLName, QString objEmail, QString objContact, QString objType);
+
+public:
+    bool create();
 };
 
 #endif // PERSON_H

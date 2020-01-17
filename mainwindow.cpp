@@ -7,12 +7,22 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    LoadBooks();
     SetMessage("Welcome back!");
 
     ui->BookTable->horizontalHeader()->sortIndicatorOrder();
     ui->BookTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->BookTable->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
+    ui->BookTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->BookTable->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    ui->PersonTable->horizontalHeader()->sortIndicatorOrder();
+    ui->PersonTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->PersonTable->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
+    ui->PersonTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->PersonTable->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    LoadBooks();
+    LoadPerson();
 }
 
 MainWindow::~MainWindow()
@@ -32,6 +42,12 @@ void MainWindow::on_addCDsBtn_clicked()
     cdsDialog->show();
 }
 
+void MainWindow::on_addPersonBtn_clicked()
+{
+    personDialog = new PersonDialog();
+    personDialog->show();
+}
+
 void MainWindow::on_refreshBtn_clicked()
 {
     switch(ui->tabWidget->currentIndex()) {
@@ -41,6 +57,7 @@ void MainWindow::on_refreshBtn_clicked()
         break;
       case 1:
         SetMessage("Persons refreshed!");
+        LoadPerson();
         break;
       default:
         break;
@@ -63,6 +80,22 @@ void MainWindow::LoadBooks(){
     QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(model);
     proxyModel->setSourceModel(model);
     ui->BookTable->setModel(proxyModel);
+
+    db->CloseDB();
+}
+
+void MainWindow::LoadPerson(){
+    db = new DatabaseController();
+    db->ConnectDB();
+    QSqlQueryModel *model = new QSqlQueryModel();
+
+    QSqlQuery query;
+    query.prepare("select * from person");
+    query.exec();
+    model->setQuery(query);
+    QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(model);
+    proxyModel->setSourceModel(model);
+    ui->PersonTable->setModel(proxyModel);
 
     db->CloseDB();
 }

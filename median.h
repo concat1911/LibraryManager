@@ -1,9 +1,10 @@
 #ifndef MEDIAN_H
 #define MEDIAN_H
-#include "databasecontroller.h"
+
 #include "QString"
 #include "QLabel"
 
+#include "databasecontroller.h"
 class Median
 {
 public:
