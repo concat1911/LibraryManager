@@ -22,8 +22,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->PersonTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->PersonTable->setSelectionMode(QAbstractItemView::SingleSelection);
 
-    LoadBooks();
-    LoadPerson();
+    LoadBooks("select * from media");
+    LoadPerson("select * from person");
 }
 
 MainWindow::~MainWindow()
@@ -54,11 +54,11 @@ void MainWindow::on_refreshBtn_clicked()
     switch(ui->tabWidget->currentIndex()) {
       case 0:
         SetMessage("Books refreshed!");
-        LoadBooks();
+        LoadBooks("select * from media");
         break;
       case 1:
         SetMessage("Persons refreshed!");
-        LoadPerson();
+        LoadPerson("select * from person");
         break;
       default:
         break;
@@ -69,13 +69,13 @@ void MainWindow::SetMessage(QString newMess){
     ui->message->setText(newMess);
 }
 
-void MainWindow::LoadBooks(){
+void MainWindow::LoadBooks(QString q){
     db = new DatabaseController();
     db->ConnectDB();
     QSqlQueryModel *model = new QSqlQueryModel();
 
     QSqlQuery query;
-    query.prepare("select * from media");
+    query.prepare(q);
     query.exec();
     model->setQuery(query);
     QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(model);
@@ -85,18 +85,23 @@ void MainWindow::LoadBooks(){
     db->CloseDB();
 }
 
-void MainWindow::LoadPerson(){
+void MainWindow::LoadPerson(QString q){
+    qDebug() << q;
     db = new DatabaseController();
     db->ConnectDB();
     QSqlQueryModel *model = new QSqlQueryModel();
 
     QSqlQuery query;
-    query.prepare("select * from person");
-    query.exec();
-    model->setQuery(query);
-    QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(model);
-    proxyModel->setSourceModel(model);
-    ui->PersonTable->setModel(proxyModel);
+    query.prepare(q);
+
+    if(query.exec()){
+        model->setQuery(query);
+        QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(model);
+        proxyModel->setSourceModel(model);
+        ui->PersonTable->setModel(proxyModel);
+    }else{
+        qDebug() << query.lastError().text();
+    }
 
     db->CloseDB();
 }
@@ -114,16 +119,19 @@ void MainWindow::onDoubleClicked(const QModelIndex &index){
 
 void MainWindow::on_searchBtn_clicked()
 {
-    switch(ui->tabWidget->currentIndex()) {
-      case 0:
+    QString input = ui->searchInput->text();
+    QString q;
+
+    if(ui->tabWidget->currentIndex() == 0){
         SetMessage("Searching media ...!");
-        LoadBooks();
-        break;
-      case 1:
+        q = "select * from media where name like \'%" + input + "%\' or ISBN like \'%" + input + "%\'";
+        LoadBooks(q);
+    }else{
         SetMessage("Searching person ...");
-        LoadPerson();
-        break;
-      default:
-        break;
+        q = "select * from person where Email like \'%" + input + "%\' or [First Name] like \'%" + input + "%\' or [Last Name] like \'%";
+        LoadPerson(q);
     }
+
+    ui->searchInput->setText("");
 }
+

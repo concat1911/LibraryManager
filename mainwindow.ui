@@ -19,11 +19,15 @@
 }
 
 QPushButton{
- 	 background-color: #4CAF50; 
- 	 border: none;
+ 	background-color: #4CAF50; 
+ 	border: none;
   	color: white;
   	text-align: center;
   	text-decoration: none;
+}
+
+QPushButton:hover{
+	font-weight: bold;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -45,7 +49,6 @@ QPushButton{
     </property>
     <property name="styleSheet">
      <string notr="true">#message{
-	text-align: center;
 	font-weight: bold;
 	color: white;
 }</string>
@@ -232,7 +235,7 @@ QPushButton{
       <number>5</number>
      </property>
      <item>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="searchInput">
        <property name="styleSheet">
         <string notr="true">QLineEdit{
  	border: 0;
@@ -249,19 +252,15 @@ QPushButton{
       <widget class="QPushButton" name="searchBtn">
        <property name="styleSheet">
         <string notr="true">#searchBtn {
-	box-shadow: 3px 4px 0px 0px #899599;
 	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
 	background-color:#ededed;
 	border-radius:15px;
 	border:1px solid #d6bcd6;
-	display:inline-block;
-	cursor:pointer;
 	color:#3a8a9e;
 	font-family:Arial;
 	font-size:17px;
 	padding:7px 25px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #e1e2ed;
 }
 #searchBtn:hover {
 	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
@@ -285,7 +284,7 @@ QPushButton{
    <zorder>addCDsBtn</zorder>
    <zorder>addPersonBtn</zorder>
    <zorder>refreshBtn</zorder>
-   <zorder>lineEdit</zorder>
+   <zorder>searchInput</zorder>
    <zorder>searchLabel</zorder>
   </widget>
  </widget>

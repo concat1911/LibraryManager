@@ -16,6 +16,9 @@ public:
     explicit BookDialog(QWidget *parent = nullptr);
     ~BookDialog();
 
+public:
+    bool isEditMode = false;
+
 private slots:
     void on_pushButton_clicked();
 

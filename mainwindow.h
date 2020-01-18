@@ -43,7 +43,7 @@ private:
     PersonDialog *personDialog;
 
 private:
-    void LoadBooks();
-    void LoadPerson();
+    void LoadBooks(QString q);
+    void LoadPerson(QString q);
 };
 #endif // MAINWINDOW_H
