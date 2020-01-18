@@ -9,19 +9,23 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     SetMessage("Welcome back!");
 
+    //UI TABLE SETTINGS
     ui->BookTable->horizontalHeader()->sortIndicatorOrder();
     ui->BookTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->BookTable->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
+    ui->BookTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->BookTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->BookTable->setSelectionMode(QAbstractItemView::SingleSelection);
     connect(ui->BookTable, SIGNAL(doubleClicked(QModelIndex)),this, SLOT(onDoubleClicked(QModelIndex)));
 
     ui->PersonTable->horizontalHeader()->sortIndicatorOrder();
-    ui->PersonTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->PersonTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->PersonTable->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
+    ui->PersonTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->PersonTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->PersonTable->setSelectionMode(QAbstractItemView::SingleSelection);
 
+    //LOAD DATA WHEN PROGRAMM START
     LoadBooks("select * from media");
     LoadPerson("select * from person");
 }
@@ -81,12 +85,9 @@ void MainWindow::LoadBooks(QString q){
     QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(model);
     proxyModel->setSourceModel(model);
     ui->BookTable->setModel(proxyModel);
-
-    db->CloseDB();
 }
 
 void MainWindow::LoadPerson(QString q){
-    qDebug() << q;
     db = new DatabaseController();
     db->ConnectDB();
     QSqlQueryModel *model = new QSqlQueryModel();
@@ -102,19 +103,23 @@ void MainWindow::LoadPerson(QString q){
     }else{
         qDebug() << query.lastError().text();
     }
-
-    db->CloseDB();
 }
 
 void MainWindow::onDoubleClicked(const QModelIndex &index){
-    qDebug() << index;
-    //qDebug() << ui->BookTable->selectionModel()->selectedIndexes();
     QModelIndexList indexList = ui->BookTable->selectionModel()->selectedIndexes();
-    int row;
-    foreach (QModelIndex index, indexList) {
-        row = index.row();
-        qDebug() << index.data();
+
+    if(indexList[2].data() == "Book"){
+        bookDialog = new BookDialog();
+        bookDialog->isEditMode = true;
+        bookDialog->bookID = indexList[0].data().toInt();
+        bookDialog->EditMode();
+        bookDialog->show();
     }
+//    int row;
+//    foreach (QModelIndex index, indexList) {
+//        row = index.row();
+//        qDebug() << index.data() << index.column();
+//    }
 }
 
 void MainWindow::on_searchBtn_clicked()

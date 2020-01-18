@@ -19,6 +19,12 @@ CDsDialog::~CDsDialog()
 
 void CDsDialog::on_pushButton_clicked()
 {
+    //Name Input is empty, not allow create new Book
+    if(ui->cdName->text().isEmpty()){
+        SetMessage("[FAIL] CDs must have a name.");
+        return;
+    }
+
     QString name,type,category,author,language,format;
     int quantity;
     float length, size;
@@ -37,7 +43,7 @@ void CDsDialog::on_pushButton_clicked()
     CDs *newCD = new CDs(name, category, author, language, quantity, format, length, size);
 
     if(newCD->create()){
-        SetMessage("New CD was added");
+        SetMessage("New CDs was added.");
     }else{
         SetMessage("[FAIL] Please check input, CD name must be unique.");
     }

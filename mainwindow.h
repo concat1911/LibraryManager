@@ -32,7 +32,6 @@ private slots:
     void on_refreshBtn_clicked();
     void on_addPersonBtn_clicked();
     void onDoubleClicked(const QModelIndex &index);
-
     void on_searchBtn_clicked();
 
 private:
@@ -43,7 +42,7 @@ private:
     PersonDialog *personDialog;
 
 private:
-    void LoadBooks(QString q);
+    void LoadBooks(QString query);
     void LoadPerson(QString q);
 };
 #endif // MAINWINDOW_H

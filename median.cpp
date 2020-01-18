@@ -41,10 +41,35 @@ bool Book::create(){
     query.addBindValue(ISBN);
 
     if(query.exec()){
-        db->CloseDB();
         return true;
     }else{
-        db->CloseDB();
+        qDebug() << query.lastError().text();
+        return false;
+    }
+}
+
+bool Book::update(int objId){
+    db = new DatabaseController();
+    if(!db->ConnectDB()) return false;
+
+    //qDebug() << name << type << category << author << language << quantity << avaiable << format << page << hasDigital << ISBN;
+
+    QSqlQuery query;
+    query.prepare("UPDATE media SET name=?, category=?, author=?, language=?, quantity=?, format=?, page=?, hasDigital=?, ISBN=? WHERE id=?");
+    query.addBindValue(name);
+    query.addBindValue(category);
+    query.addBindValue(author);
+    query.addBindValue(language);
+    query.addBindValue(quantity);
+    query.addBindValue(format);
+    query.addBindValue(page);
+    query.addBindValue(hasDigital);
+    query.addBindValue(ISBN);
+    query.addBindValue(objId);
+
+    if(query.exec()){
+        return true;
+    }else{
         qDebug() << query.lastError().text();
         return false;
     }
@@ -85,10 +110,8 @@ bool CDs::create(){
     query.addBindValue(length);
 
     if(query.exec()){
-        db->CloseDB();
         return true;
     }else{
-        db->CloseDB();
         qDebug() << query.lastError().text();
         return false;
     }

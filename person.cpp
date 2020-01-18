@@ -24,10 +24,8 @@ bool Person::create(){
     query.addBindValue(type);
 
     if(query.exec()){
-        db->CloseDB();
         return true;
     }else{
-        db->CloseDB();
         qDebug() << query.lastError().text();
         return false;
     }

@@ -399,7 +399,7 @@
      </layout>
     </item>
     <item>
-     <widget class="QTableView" name="personView">
+     <widget class="QTableView" name="personTable">
       <property name="enabled">
        <bool>true</bool>
       </property>
