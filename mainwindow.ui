@@ -6,39 +6,61 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1125</width>
-    <height>698</height>
+    <width>1136</width>
+    <height>705</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Medien Vervaltung - s79226@htw-dresden.de</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#centralwidget{
+	border-image: url(:/images/assets/background.jpg);
+}
+
+QPushButton{
+ 	 background-color: #4CAF50; 
+ 	 border: none;
+  	color: white;
+  	text-align: center;
+  	text-decoration: none;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="message">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
-      <width>771</width>
+      <y>20</y>
+      <width>711</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">#message{
+	text-align: center;
+	font-weight: bold;
+	color: white;
+}</string>
+    </property>
     <property name="text">
-     <string>Message</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Message&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="addMedianBtn">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>20</y>
+      <x>1040</x>
+      <y>130</y>
       <width>91</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -48,10 +70,10 @@
    <widget class="QPushButton" name="addCDsBtn">
     <property name="geometry">
      <rect>
-      <x>820</x>
-      <y>20</y>
-      <width>101</width>
-      <height>31</height>
+      <x>1040</x>
+      <y>180</y>
+      <width>91</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -63,7 +85,7 @@
      <rect>
       <x>10</x>
       <y>60</y>
-      <width>1111</width>
+      <width>1021</width>
       <height>631</height>
      </rect>
     </property>
@@ -155,10 +177,10 @@
    <widget class="QPushButton" name="addPersonBtn">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>20</y>
+      <x>1040</x>
+      <y>230</y>
       <width>91</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -168,28 +190,94 @@
    <widget class="QPushButton" name="refreshBtn">
     <property name="geometry">
      <rect>
-      <x>624</x>
-      <y>20</y>
+      <x>1040</x>
+      <y>80</y>
       <width>91</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Refresh</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="searchBtn">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>1030</x>
+      <x>690</x>
       <y>20</y>
-      <width>91</width>
-      <height>31</height>
+      <width>431</width>
+      <height>51</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Search</string>
-    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0">
+     <property name="spacing">
+      <number>18</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
+      <number>5</number>
+     </property>
+     <item>
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{
+ 	border: 0;
+ 	border-bottom: 2px solid rgb(0, 217, 217);
+	outline: 0;
+	background: transparent;
+	color: white;
+	height: 35px;
+}</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="searchBtn">
+       <property name="styleSheet">
+        <string notr="true">#searchBtn {
+	box-shadow: 3px 4px 0px 0px #899599;
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	background-color:#ededed;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#3a8a9e;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+#searchBtn:hover {
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	background-color:#bab1ba;
+}
+#searchBtn:active {
+	position:relative;
+	top:1px;
+}</string>
+       </property>
+       <property name="text">
+        <string>SEARCH</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
    <zorder>tabWidget</zorder>
    <zorder>message</zorder>
@@ -197,7 +285,8 @@
    <zorder>addCDsBtn</zorder>
    <zorder>addPersonBtn</zorder>
    <zorder>refreshBtn</zorder>
-   <zorder>searchBtn</zorder>
+   <zorder>lineEdit</zorder>
+   <zorder>searchLabel</zorder>
   </widget>
  </widget>
  <resources/>

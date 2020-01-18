@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->BookTable->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
     ui->BookTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->BookTable->setSelectionMode(QAbstractItemView::SingleSelection);
+    connect(ui->BookTable, SIGNAL(doubleClicked(QModelIndex)),this, SLOT(onDoubleClicked(QModelIndex)));
 
     ui->PersonTable->horizontalHeader()->sortIndicatorOrder();
     ui->PersonTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -98,4 +99,31 @@ void MainWindow::LoadPerson(){
     ui->PersonTable->setModel(proxyModel);
 
     db->CloseDB();
+}
+
+void MainWindow::onDoubleClicked(const QModelIndex &index){
+    qDebug() << index;
+    //qDebug() << ui->BookTable->selectionModel()->selectedIndexes();
+    QModelIndexList indexList = ui->BookTable->selectionModel()->selectedIndexes();
+    int row;
+    foreach (QModelIndex index, indexList) {
+        row = index.row();
+        qDebug() << index.data();
+    }
+}
+
+void MainWindow::on_searchBtn_clicked()
+{
+    switch(ui->tabWidget->currentIndex()) {
+      case 0:
+        SetMessage("Searching media ...!");
+        LoadBooks();
+        break;
+      case 1:
+        SetMessage("Searching person ...");
+        LoadPerson();
+        break;
+      default:
+        break;
+    }
 }
