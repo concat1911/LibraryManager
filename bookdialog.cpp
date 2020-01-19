@@ -13,7 +13,13 @@ BookDialog::BookDialog(QWidget *parent) :
     ui->bookQuantity->setValidator(new QIntValidator(this));
     ui->bookPage->setValidator(new QIntValidator(this));
 
-    SetMessage("Fill all data below to create new book.");
+    ui->personTable->horizontalHeader()->sortIndicatorOrder();
+    ui->personTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->personTable->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
+    ui->personTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->personTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->personTable->setSelectionMode(QAbstractItemView::SingleSelection);
+    connect(ui->personTable, SIGNAL(doubleClicked(QModelIndex)),this, SLOT(onDoubleClicked(QModelIndex)));
 }
 
 BookDialog::~BookDialog()
@@ -25,7 +31,7 @@ void BookDialog::on_pushButton_clicked()
 {
     //Name Input is empty, not allow create new Book
     if(ui->bookName->text().isEmpty()){
-        SetMessage("[FAIL] Book must have a name.");
+        QMessageBox::information(this, "MESSAGE", "Book must have a name");
         return;
     }
 
@@ -54,27 +60,21 @@ void BookDialog::on_pushButton_clicked()
             QMessageBox::information(this, "MESSAGE", "New book was created!");
             close();
         }else{
-            SetMessage("[FAIL] Book name might already exist, please check input.");
+            QMessageBox::information(this, "MESSAGE", "Book might already exist, please check name input.");
         }
     }else{
         Book *newBook = new Book(name, category, author, language, quantity, format, page, hasDigital, ISBN);
 
         if(newBook->update(bookID)){
-            SetMessage("Data updated");
+            QMessageBox::information(this, "MESSAGE", "Data Updated");
         }else{
-            SetMessage("[FAIL] Book name might already exist, please check input.");
+            QMessageBox::information(this, "MESSAGE", "Book might already exist, please check name input.");
         }
     }
 }
 
-void BookDialog::SetMessage(QString newMess){
-    ui->message->setText(newMess);
-}
-
 void BookDialog::EditMode(){
     //qDebug() << bookID << isEditMode;
-
-    SetMessage("You can update this Book data.");
 
     db = new DatabaseController();
     db->ConnectDB();
@@ -82,7 +82,7 @@ void BookDialog::EditMode(){
     QSqlQuery query;
     query.prepare("select * from media where id=?");
     query.addBindValue(bookID);
-
+    LoadPerson();
     if(query.exec()){
         while (query.next()) {
             //Data Model in array
@@ -95,10 +95,11 @@ void BookDialog::EditMode(){
             ui->bookFormat->setCurrentText(query.value(7).toString());
             ui->bookQuantity->setText(query.value(8).toString());
             ui->bookPage->setText(query.value(10).toString());
+            bookAvaiable=query.value(9).toInt();
+            ui->bookAvaiable->setText(query.value(9).toString() + " books in library.");
         }
     }else{
         qDebug() << query.lastError().text();
-        SetMessage("[Book not found] Please close this window and try again.");
     }
 }
 
@@ -116,8 +117,111 @@ void BookDialog::on_removeBtn_clicked()
         query.addBindValue(bookID);
 
         if(query.exec()){
-            QMessageBox::information(this, "MESSAGE", "Book was removed!");
-            close();
+            query.prepare("DELETE FROM media_borrow WHERE media_id=?");
+            query.addBindValue(bookID);
+            if(query.exec()){
+                QMessageBox::information(this, "MESSAGE", "Book was removed!");
+                close();
+            }
         }
     }
+}
+
+void BookDialog::on_borrowInput_clicked()
+{
+    if(!isEditMode) return;
+
+    if(bookAvaiable <= 0){
+        QMessageBox::information(this, "MESSAGE", "No more book in library");
+        return;
+    }
+
+    if(ui->personInput->text().isEmpty()){
+        QMessageBox::information(this, "MESSAGE", "Please enter valid person email.");
+        return;
+    }
+
+    QString personEmail = ui->personInput->text();
+    db = new DatabaseController();
+    db->ConnectDB();
+
+    QSqlQuery query;
+    query.prepare("SELECT (id) FROM person WHERE Email=?");
+    query.addBindValue(personEmail);
+
+    if(query.exec() && query.next()){
+        int personId = query.value(0).toInt();
+        //Check if this person already borrow the book or not
+        query.prepare("SELECT * FROM media_borrow WHERE person_id=? AND media_id=?");
+        query.addBindValue(personId);
+        query.addBindValue(bookID);
+
+        if(query.exec() && query.next()){
+            QMessageBox::information(this, "MESSAGE", "This person already borrow this book.");
+            ui->personInput->setText("");
+        }else{
+            query.prepare("INSERT INTO media_borrow (person_id, media_id) VALUES (?, ?)");
+            query.addBindValue(personId);
+            query.addBindValue(bookID);
+
+            if(query.exec()){
+                QMessageBox::information(this, "MESSAGE", "Updated, this person can take the book.");
+                bookAvaiable--;
+                query.prepare("UPDATE media SET avaiable=? WHERE id=?");
+                query.addBindValue(bookAvaiable);
+                query.addBindValue(bookID);
+                query.exec();
+
+                ui->personInput->setText("");
+                ui->bookAvaiable->setText(QString::number(bookAvaiable) + " books in library");
+                LoadPerson();
+            }
+        }
+    }else{
+        QMessageBox::information(this, "MESSAGE", "Not found this person with that email, please try again.");
+        ui->personInput->setText("");
+    }
+}
+
+void BookDialog::LoadPerson(){
+    if(!isEditMode) return;
+
+    QSqlQueryModel *model = new QSqlQueryModel();
+    QString q = "SELECT * FROM person LEFT JOIN media_borrow mb ON mb.person_id = person.id WHERE mb.media_id=";
+    q.append(QString::number(bookID));
+    model->setQuery(q);
+    model->removeColumns(6, 2);
+    QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(model);
+    proxyModel->setSourceModel(model);
+    ui->personTable->setModel(proxyModel);
+    ui->bookAvaiable->setText(QString::number(bookAvaiable) + " books in library");
+}
+
+
+void BookDialog::onDoubleClicked(const QModelIndex &index){
+    QModelIndexList indexList = ui->personTable->selectionModel()->selectedIndexes();
+
+    QMessageBox::StandardButton reply;
+    QString mess = "Did " + indexList[3].data().toString() + " return this book?";
+    reply = QMessageBox::question(this, "[CONFIRM REQUIRE]", mess, QMessageBox::Yes|QMessageBox::No);
+
+    if (reply == QMessageBox::Yes) {
+        QSqlQuery query;
+        query.prepare("DELETE FROM media_borrow WHERE person_id=? and media_id=?");
+        query.addBindValue(indexList[0].data());
+        query.addBindValue(bookID);
+
+        if(query.exec()){
+            QMessageBox::information(this, "MESSAGE", "Book was returned!");
+            bookAvaiable++;
+            query.prepare("UPDATE media SET avaiable=? WHERE id=?");
+            query.addBindValue(bookAvaiable);
+            query.addBindValue(bookID);
+            query.exec();
+
+            LoadPerson();
+        }
+    }
+
+//    indexList[2].data() == "Book"
 }
