@@ -46,5 +46,6 @@ public:
 
 public:
     bool create();
+    bool update(int objId);
 };
 #endif // MEDIAN_H

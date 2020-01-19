@@ -20,6 +20,7 @@ public:
 
 public:
     bool create();
+    bool update(int objID);
 };
 
 #endif // PERSON_H

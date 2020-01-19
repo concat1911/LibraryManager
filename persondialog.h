@@ -2,7 +2,6 @@
 #define PERSONDIALOG_H
 
 #include <QDialog>
-
 #include "person.h"
 
 namespace Ui {
@@ -18,7 +17,10 @@ public:
     ~PersonDialog();
 
 public:
-    void SetMessage(QString newMess);
+    void EditMode();
+
+private:
+    void LoadPerson();
 
 private slots:
     void on_pushButton_clicked();

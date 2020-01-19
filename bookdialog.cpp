@@ -20,6 +20,8 @@ BookDialog::BookDialog(QWidget *parent) :
     ui->personTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->personTable->setSelectionMode(QAbstractItemView::SingleSelection);
     connect(ui->personTable, SIGNAL(doubleClicked(QModelIndex)),this, SLOT(onDoubleClicked(QModelIndex)));
+
+    ui->removeBtn->setVisible(false);
 }
 
 BookDialog::~BookDialog()
@@ -83,6 +85,8 @@ void BookDialog::EditMode(){
     query.prepare("select * from media where id=?");
     query.addBindValue(bookID);
     LoadPerson();
+    ui->removeBtn->setVisible(true);
+
     if(query.exec()){
         while (query.next()) {
             //Data Model in array

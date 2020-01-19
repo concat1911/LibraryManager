@@ -57,7 +57,7 @@ void MainWindow::on_refreshBtn_clicked()
 {
     switch(ui->tabWidget->currentIndex()) {
       case 0:
-        SetMessage("Books refreshed!");
+        SetMessage("Book and CD refreshed!");
         LoadBooks("select * from media");
         break;
       case 1:
@@ -114,6 +114,14 @@ void MainWindow::onDoubleClicked(const QModelIndex &index){
         bookDialog->bookID = indexList[0].data().toInt();
         bookDialog->EditMode();
         bookDialog->show();
+    }
+
+    if(indexList[2].data() == "CDs"){
+        cdsDialog = new CDsDialog();
+        cdsDialog->isEditMode = true;
+        cdsDialog->cdID = indexList[0].data().toInt();
+        cdsDialog->EditMode();
+        cdsDialog->show();
     }
 //    int row;
 //    foreach (QModelIndex index, indexList) {

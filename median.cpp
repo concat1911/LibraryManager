@@ -116,3 +116,29 @@ bool CDs::create(){
         return false;
     }
 }
+
+bool CDs::update(int objId){
+    db = new DatabaseController();
+    if(!db->ConnectDB()) return false;
+
+    qDebug() << name << type << category << author << language << quantity << avaiable << format << length << size;
+
+    QSqlQuery query;
+    query.prepare("UPDATE media SET name=?, category=?, author=?, language=?, quantity=?, format=?, [size (Mb)]=?, [length (min.)]=? WHERE id=?");
+    query.addBindValue(name);
+    query.addBindValue(category);
+    query.addBindValue(author);
+    query.addBindValue(language);
+    query.addBindValue(quantity);
+    query.addBindValue(format);
+    query.addBindValue(size);
+    query.addBindValue(length);
+    query.addBindValue(objId);
+
+    if(query.exec()){
+        return true;
+    }else{
+        qDebug() << query.lastError().text();
+        return false;
+    }
+}
