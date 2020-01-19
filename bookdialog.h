@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include "median.h"
-#include "databasecontroller.h"
+#include <QtSql>
 
 namespace Ui {
 class BookDialog;
@@ -28,7 +28,6 @@ private:
     void LoadPerson();
 
 private:
-    DatabaseController *db;
     int bookAvaiable;
 
 private slots:

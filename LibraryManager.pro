@@ -18,7 +18,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     bookdialog.cpp \
     cdsdialog.cpp \
-    databasecontroller.cpp \
     main.cpp \
     mainwindow.cpp \
     median.cpp \
@@ -28,7 +27,6 @@ SOURCES += \
 HEADERS += \
     bookdialog.h \
     cdsdialog.h \
-    databasecontroller.h \
     mainwindow.h \
     median.h \
     person.h \

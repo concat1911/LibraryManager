@@ -21,10 +21,7 @@ Book::Book(QString objName, QString objCategory, QString objAuthor, QString objL
 }
 
 bool Book::create(){
-    db = new DatabaseController();
-    if(!db->ConnectDB()) return false;
-
-    qDebug() << name << type << category << author << language << quantity << avaiable << format << page << hasDigital << ISBN;
+    //qDebug() << name << type << category << author << language << quantity << avaiable << format << page << hasDigital << ISBN;
 
     QSqlQuery query;
     query.prepare("INSERT INTO media (name, type, category, author, language, quantity, avaiable, format, page, hasDigital, ISBN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -49,9 +46,6 @@ bool Book::create(){
 }
 
 bool Book::update(int objId){
-    db = new DatabaseController();
-    if(!db->ConnectDB()) return false;
-
     //qDebug() << name << type << category << author << language << quantity << avaiable << format << page << hasDigital << ISBN;
 
     QSqlQuery query;
@@ -91,10 +85,7 @@ CDs::CDs(QString objName,  QString objCategory, QString objAuthor, QString objLa
 
 
 bool CDs::create(){
-    db = new DatabaseController();
-    if(!db->ConnectDB()) return false;
-
-    qDebug() << name << type << category << author << language << quantity << avaiable << format << length << size;
+    //qDebug() << name << type << category << author << language << quantity << avaiable << format << length << size;
 
     QSqlQuery query;
     query.prepare("INSERT INTO media (name, type, category, author, language, quantity, avaiable, format, [size (Mb)], [length (min.)]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -118,10 +109,7 @@ bool CDs::create(){
 }
 
 bool CDs::update(int objId){
-    db = new DatabaseController();
-    if(!db->ConnectDB()) return false;
-
-    qDebug() << name << type << category << author << language << quantity << avaiable << format << length << size;
+    //qDebug() << name << type << category << author << language << quantity << avaiable << format << length << size;
 
     QSqlQuery query;
     query.prepare("UPDATE media SET name=?, category=?, author=?, language=?, quantity=?, format=?, [size (Mb)]=?, [length (min.)]=? WHERE id=?");

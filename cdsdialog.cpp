@@ -71,8 +71,6 @@ void CDsDialog::on_pushButton_clicked()
 }
 
 void CDsDialog::EditMode(){
-    db = new DatabaseController();
-    db->ConnectDB();
 
     QSqlQuery query;
     query.prepare("select * from media where id=?");
@@ -191,5 +189,26 @@ void CDsDialog::on_borrowInput_clicked()
     }else{
         QMessageBox::information(this, "MESSAGE", "Not found this person with that email, please try again.");
         ui->personInput->setText("");
+    }
+}
+
+void CDsDialog::on_removeBtn_clicked()
+{
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "[CONFIRM PLEASE]", "Do you want to remove this cd from library?", QMessageBox::Yes|QMessageBox::No);
+
+    if (reply == QMessageBox::Yes) {
+        QSqlQuery query;
+        query.prepare("DELETE FROM media WHERE id=?");
+        query.addBindValue(cdID);
+
+        if(query.exec()){
+            query.prepare("DELETE FROM media_borrow WHERE media_id=?");
+            query.addBindValue(cdID);
+            if(query.exec()){
+                QMessageBox::information(this, "MESSAGE", "CDs was removed!");
+                close();
+            }
+        }
     }
 }

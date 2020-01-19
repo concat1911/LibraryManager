@@ -2,7 +2,7 @@
 #define PERSON_H
 
 #include "QString"
-#include "databasecontroller.h"
+#include <QtSql>
 
 class Person
 {
@@ -11,9 +11,6 @@ class Person
     QString email;
     QString contact;
     QString type;
-
-public:
-    DatabaseController *db;
 
 public:
     Person(QString objFName, QString objLName, QString objEmail, QString objContact, QString objType);

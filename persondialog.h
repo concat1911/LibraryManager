@@ -3,7 +3,6 @@
 
 #include <QDialog>
 #include "person.h"
-#include "databasecontroller.h"
 
 namespace Ui {
 class PersonDialog;
@@ -28,10 +27,9 @@ private:
 
 private slots:
     void on_pushButton_clicked();
+    void on_removeBtn_clicked();
+    void on_borrowBtn_clicked();
     void onDoubleClicked(const QModelIndex &index);
-
-private:
-    DatabaseController *db;
 
 private:
     Ui::PersonDialog *ui;

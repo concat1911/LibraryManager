@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QSortFilterProxyModel>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,6 +26,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->PersonTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->PersonTable->setSelectionMode(QAbstractItemView::SingleSelection);
     connect(ui->PersonTable, SIGNAL(doubleClicked(QModelIndex)),this, SLOT(onPersonDoubleClicked(QModelIndex)));
+
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(QDir::currentPath() + QString("/mediaDB.db"));
+    db.open();
+    if(!db.open()){
+        QMessageBox::critical(0, QObject::tr("Database Error"), db.lastError().text());
+    }
 
     //LOAD DATA WHEN PROGRAMM START
     LoadBooks("select * from media");
@@ -75,8 +83,6 @@ void MainWindow::SetMessage(QString newMess){
 }
 
 void MainWindow::LoadBooks(QString q){
-    db = new DatabaseController();
-    db->ConnectDB();
     QSqlQueryModel *model = new QSqlQueryModel();
 
     QSqlQuery query;
@@ -89,8 +95,6 @@ void MainWindow::LoadBooks(QString q){
 }
 
 void MainWindow::LoadPerson(QString q){
-    db = new DatabaseController();
-    db->ConnectDB();
     QSqlQueryModel *model = new QSqlQueryModel();
 
     QSqlQuery query;
@@ -143,6 +147,10 @@ void MainWindow::onPersonDoubleClicked(const QModelIndex &index){
 
 void MainWindow::on_searchBtn_clicked()
 {
+    if(ui->searchInput->text().isEmpty()){
+        return;
+    }
+
     QString input = ui->searchInput->text();
     QString q;
 

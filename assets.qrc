@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/images">
         <file>assets/background.jpg</file>
+        <file>assets/dialog_BG.jpg</file>
+        <file>assets/icon.png</file>
     </qresource>
 </RCC>

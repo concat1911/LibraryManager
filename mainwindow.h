@@ -4,12 +4,18 @@
 #include <QMainWindow>
 #include <QtDebug>
 #include <QString>
-#include <databasecontroller.h>
 
 //LIBRARY
 #include "bookdialog.h"
 #include "cdsdialog.h"
 #include "persondialog.h"
+
+#include <QtSql>
+#include <QtDebug>
+#include <QFileInfo>
+#include <QDir>
+#include <QString>
+#include <QStandardPaths>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,7 +43,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    DatabaseController *db;
+    QSqlDatabase db;
     BookDialog *bookDialog;
     CDsDialog *cdsDialog;
     PersonDialog *personDialog;

@@ -13,6 +13,34 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#borrowInput, #pushButton{
+ 	background-color: #4CAF50; 
+ 	border: none;
+  	color: white;
+  	text-align: center;
+  	text-decoration: none;
+	font-weight: bold;
+}
+
+#CDsDialog{
+	border-image: url(:/images/assets/dialog_BG.jpg);
+}
+
+#removeBtn{
+ 	background-color: rgb(226, 32, 36); 
+ 	border: none;
+  	color: white;
+  	text-align: center;
+  	text-decoration: none;
+	font-weight: bold;
+}
+
+QLabel{
+	font-weight: bold;
+}
+</string>
+  </property>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
@@ -21,6 +49,9 @@
      <width>111</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="text">
     <string>Confirm</string>
@@ -34,6 +65,9 @@
      <width>111</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="text">
     <string>Remove</string>
@@ -74,6 +108,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
    <property name="text">
     <string>Borrow</string>
    </property>
@@ -106,7 +143,7 @@
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>name</string>
+         <string>Name:       </string>
         </property>
        </widget>
       </item>
@@ -120,7 +157,7 @@
       <item>
        <widget class="QLabel" name="label_10">
         <property name="text">
-         <string>category</string>
+         <string>Category:</string>
         </property>
        </widget>
       </item>
@@ -250,7 +287,7 @@
       <item>
        <widget class="QLabel" name="label_11">
         <property name="text">
-         <string>author</string>
+         <string>Author:     </string>
         </property>
        </widget>
       </item>
@@ -264,7 +301,7 @@
       <item>
        <widget class="QLabel" name="label_12">
         <property name="text">
-         <string>language</string>
+         <string>Language:</string>
         </property>
        </widget>
       </item>
@@ -314,7 +351,7 @@
       <item>
        <widget class="QLabel" name="label_13">
         <property name="text">
-         <string>quantity</string>
+         <string>Quantity:  </string>
         </property>
        </widget>
       </item>
@@ -328,7 +365,7 @@
       <item>
        <widget class="QLabel" name="label_14">
         <property name="text">
-         <string>format</string>
+         <string>Format:</string>
         </property>
        </widget>
       </item>
@@ -408,7 +445,7 @@
       <item>
        <widget class="QLabel" name="label_15">
         <property name="text">
-         <string>length</string>
+         <string>Length:     </string>
         </property>
        </widget>
       </item>
@@ -422,7 +459,7 @@
       <item>
        <widget class="QLabel" name="label_16">
         <property name="text">
-         <string>size</string>
+         <string>Size:          </string>
         </property>
        </widget>
       </item>

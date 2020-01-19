@@ -3,8 +3,8 @@
 
 #include "QString"
 #include "QLabel"
+#include <QtSql>
 
-#include "databasecontroller.h"
 class Median
 {
 public:
@@ -16,9 +16,6 @@ public:
     QString format;
     int quantity;
     int avaiable;
-
-public:
-    DatabaseController *db;
 
 public:
     Median();

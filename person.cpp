@@ -10,10 +10,7 @@ Person::Person(QString objFName, QString objLName, QString objEmail, QString obj
 }
 
 bool Person::create(){
-    db = new DatabaseController();
-    if(!db->ConnectDB()) return false;
-
-    qDebug() << firstName << lastName << email << contact << type;
+    //qDebug() << firstName << lastName << email << contact << type;
 
     QSqlQuery query;
     query.prepare("INSERT INTO person ([First Name], [Last Name], Email, Contact, Type) VALUES (?, ?, ?, ?, ?)");

@@ -78,9 +78,6 @@ void BookDialog::on_pushButton_clicked()
 void BookDialog::EditMode(){
     //qDebug() << bookID << isEditMode;
 
-    db = new DatabaseController();
-    db->ConnectDB();
-
     QSqlQuery query;
     query.prepare("select * from media where id=?");
     query.addBindValue(bookID);
@@ -113,8 +110,6 @@ void BookDialog::on_removeBtn_clicked()
     reply = QMessageBox::question(this, "[CONFIRM PLEASE]", "Do you want to remove this book from library?", QMessageBox::Yes|QMessageBox::No);
 
     if (reply == QMessageBox::Yes) {
-        db = new DatabaseController();
-        db->ConnectDB();
 
         QSqlQuery query;
         query.prepare("DELETE FROM media WHERE id=?");
@@ -146,8 +141,6 @@ void BookDialog::on_borrowInput_clicked()
     }
 
     QString personEmail = ui->personInput->text();
-    db = new DatabaseController();
-    db->ConnectDB();
 
     QSqlQuery query;
     query.prepare("SELECT (id) FROM person WHERE Email=?");

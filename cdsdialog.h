@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include "median.h"
-#include "databasecontroller.h"
+#include <QtSql>
 
 namespace Ui {
 class CDsDialog;
@@ -32,8 +32,9 @@ private slots:
     void on_borrowInput_clicked();
     void onDoubleClicked(const QModelIndex &index);
 
+    void on_removeBtn_clicked();
+
 private:
-    DatabaseController *db;
     int cdAvaiable;
 
 private:
