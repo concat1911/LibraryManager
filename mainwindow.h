@@ -31,7 +31,8 @@ private slots:
     void on_addCDsBtn_clicked();
     void on_refreshBtn_clicked();
     void on_addPersonBtn_clicked();
-    void onDoubleClicked(const QModelIndex &index);
+    void onMediaDoubleClicked(const QModelIndex &index);
+    void onPersonDoubleClicked(const QModelIndex &index);
     void on_searchBtn_clicked();
 
 private:

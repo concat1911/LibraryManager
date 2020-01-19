@@ -57,6 +57,7 @@ void CDsDialog::on_pushButton_clicked()
     if(!isEditMode){
         if(newCD->create()){
             QMessageBox::information(this, "MESSAGE", "New CDs was added into library.");
+            close();
         }else{
             QMessageBox::information(this, "MESSAGE", "CDs might already exist, please check input name.");
         }

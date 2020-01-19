@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "person.h"
+#include "databasecontroller.h"
 
 namespace Ui {
 class PersonDialog;
@@ -15,15 +16,22 @@ class PersonDialog : public QDialog
 public:
     explicit PersonDialog(QWidget *parent = nullptr);
     ~PersonDialog();
+public:
+    bool isEditMode = false;
+    int personID;
 
 public:
     void EditMode();
 
 private:
-    void LoadPerson();
+    void LoadMedia();
 
 private slots:
     void on_pushButton_clicked();
+    void onDoubleClicked(const QModelIndex &index);
+
+private:
+    DatabaseController *db;
 
 private:
     Ui::PersonDialog *ui;

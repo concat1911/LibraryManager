@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->BookTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->BookTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->BookTable->setSelectionMode(QAbstractItemView::SingleSelection);
-    connect(ui->BookTable, SIGNAL(doubleClicked(QModelIndex)),this, SLOT(onDoubleClicked(QModelIndex)));
+    connect(ui->BookTable, SIGNAL(doubleClicked(QModelIndex)),this, SLOT(onMediaDoubleClicked(QModelIndex)));
 
     ui->PersonTable->horizontalHeader()->sortIndicatorOrder();
     ui->PersonTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->PersonTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->PersonTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->PersonTable->setSelectionMode(QAbstractItemView::SingleSelection);
+    connect(ui->PersonTable, SIGNAL(doubleClicked(QModelIndex)),this, SLOT(onPersonDoubleClicked(QModelIndex)));
 
     //LOAD DATA WHEN PROGRAMM START
     LoadBooks("select * from media");
@@ -105,7 +106,7 @@ void MainWindow::LoadPerson(QString q){
     }
 }
 
-void MainWindow::onDoubleClicked(const QModelIndex &index){
+void MainWindow::onMediaDoubleClicked(const QModelIndex &index){
     QModelIndexList indexList = ui->BookTable->selectionModel()->selectedIndexes();
 
     if(indexList[2].data() == "Book"){
@@ -130,6 +131,16 @@ void MainWindow::onDoubleClicked(const QModelIndex &index){
 //    }
 }
 
+void MainWindow::onPersonDoubleClicked(const QModelIndex &index){
+    QModelIndexList indexList = ui->PersonTable->selectionModel()->selectedIndexes();
+
+    personDialog = new PersonDialog();
+    personDialog->isEditMode = true;
+    personDialog->personID = indexList[0].data().toInt();
+    personDialog->EditMode();
+    personDialog->show();
+}
+
 void MainWindow::on_searchBtn_clicked()
 {
     QString input = ui->searchInput->text();
@@ -141,7 +152,7 @@ void MainWindow::on_searchBtn_clicked()
         LoadBooks(q);
     }else{
         SetMessage("Searching person ...");
-        q = "select * from person where Email like \'%" + input + "%\' or [First Name] like \'%" + input + "%\' or [Last Name] like \'%";
+        q = "select * from person where Email like \'%" + input + "%\' or [First Name] like \'%" + input + "%\' or [Last Name] like \'%" + input + "%\'";
         LoadPerson(q);
     }
 

@@ -29,9 +29,8 @@ private:
 
 private slots:
     void on_pushButton_clicked();
-    void onDoubleClicked(const QModelIndex &index);
-
     void on_borrowInput_clicked();
+    void onDoubleClicked(const QModelIndex &index);
 
 private:
     DatabaseController *db;

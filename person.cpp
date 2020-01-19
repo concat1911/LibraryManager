@@ -30,3 +30,21 @@ bool Person::create(){
         return false;
     }
 }
+
+bool Person::update(int objID){
+    QSqlQuery query;
+    query.prepare("UPDATE person SET [First Name]=?, [Last Name]=?, Email=?, Contact=?, Type=? WHERE id=?");
+    query.addBindValue(firstName);
+    query.addBindValue(lastName);
+    query.addBindValue(email);
+    query.addBindValue(contact);
+    query.addBindValue(type);
+    query.addBindValue(objID);
+
+    if(query.exec()){
+        return true;
+    }else{
+        qDebug() << query.lastError().text();
+        return false;
+    }
+}
