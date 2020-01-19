@@ -52,7 +52,9 @@ void CDsDialog::on_pushButton_clicked()
     length=ui->cdLength->text().toFloat();
     size=ui->cdSize->text().toFloat();
 
-    CDs *newCD = new CDs(name, category, author, language, quantity, format, length, size);
+    CDs *newCD = new CDs(length, size);
+    newCD->SetBase(name, category, author, language, quantity, format);
+
     //CHECK MODE
     if(!isEditMode){
         if(newCD->create()){
@@ -62,6 +64,7 @@ void CDsDialog::on_pushButton_clicked()
             QMessageBox::information(this, "MESSAGE", "CDs might already exist, please check input name.");
         }
     }else{
+        newCD->avaiable = cdAvaiable;
         if(newCD->update(cdID)){
             QMessageBox::information(this, "MESSAGE", "CDs data updated.");
         }else{

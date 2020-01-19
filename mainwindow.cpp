@@ -29,9 +29,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(QDir::currentPath() + QString("/mediaDB.db"));
-    db.open();
+
     if(!db.open()){
-        QMessageBox::critical(0, QObject::tr("Database Error"), db.lastError().text());
+        QMessageBox::information(this, "MESSAGE", "Database connected fail.");
     }
 
     //LOAD DATA WHEN PROGRAMM START

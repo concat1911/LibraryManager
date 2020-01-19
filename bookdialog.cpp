@@ -53,11 +53,11 @@ void BookDialog::on_pushButton_clicked()
     page=ui->bookPage->text().toInt();
     hasDigital=ui->hasDigital->isChecked();
 
+    Book *newBook = new Book(page, hasDigital, ISBN);
+    newBook->SetBase(name, category, author, language, quantity, format);
     //Check Book Dialog mode
     //if false, create new book else update book data
     if(!isEditMode){
-        Book *newBook = new Book(name, category, author, language, quantity, format, page, hasDigital, ISBN);
-
         if(newBook->create()){
             QMessageBox::information(this, "MESSAGE", "New book was created!");
             close();
@@ -65,8 +65,7 @@ void BookDialog::on_pushButton_clicked()
             QMessageBox::information(this, "MESSAGE", "Book might already exist, please check name input.");
         }
     }else{
-        Book *newBook = new Book(name, category, author, language, quantity, format, page, hasDigital, ISBN);
-
+        newBook->avaiable = bookAvaiable;
         if(newBook->update(bookID)){
             QMessageBox::information(this, "MESSAGE", "Data Updated");
         }else{

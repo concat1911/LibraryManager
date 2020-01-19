@@ -19,6 +19,15 @@ public:
 
 public:
     Median();
+    virtual ~Median() {}
+
+public:
+    QSqlQuery query;
+
+public:
+    void SetBase(QString objName, QString objCategory, QString objAuthor, QString objLanguage, int objQuantity, QString objFormat);
+    virtual void BindValues();
+    virtual bool QueryExec();
 };
 
 class Book : public Median{
@@ -27,19 +36,19 @@ class Book : public Median{
     QString ISBN;
 
 public:
-    Book(QString objName,  QString objCategory, QString objAuthor, QString objLanguage, int objQuantity, QString objFormat, int objPage, bool objHasDigital, QString objISBN);
+    Book(int objPage, bool objHasDigital, QString objISBN);
 
 public:
     bool create();
     bool update(int objId);
 };
 
-class CDs: Median{
+class CDs: public Median{
     float length;
     float size;
 
 public:
-    CDs(QString objName,  QString objCategory, QString objAuthor, QString objLanguage, int objQuantity, QString objFormat, float objLength, float objSize);
+    CDs(float objLength, float objSize);
 
 public:
     bool create();
