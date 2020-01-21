@@ -18,6 +18,10 @@ public:
 public:
     bool create();
     bool update(int objID);
+    bool QueryExec();
+
+private:
+    QSqlQuery query;
 };
 
 #endif // PERSON_H

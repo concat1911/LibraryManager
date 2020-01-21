@@ -31,10 +31,10 @@ private:
     int bookAvaiable;
 
 private slots:
-    void on_pushButton_clicked();
-    void on_removeBtn_clicked();
-    void on_borrowInput_clicked();
-    void onDoubleClicked(const QModelIndex &index);
+    void on_pushButton_clicked();                       //Confirm button, if edit mode => update data else create new book
+    void on_removeBtn_clicked();                        //Ask permission for remove data
+    void on_borrowInput_clicked();                      //Check valid data then allow person take the media
+    void onDoubleClicked(const QModelIndex &index);     //Ask permission that this person return media or not
 
 private:
     Ui::BookDialog *ui;
