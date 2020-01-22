@@ -64,6 +64,7 @@ void MainWindow::on_addPersonBtn_clicked()
 
 void MainWindow::on_refreshBtn_clicked()
 {
+    //RELOAD TABLE DATA BASE ON CURRENT TAB INDEX
     switch(ui->tabWidget->currentIndex()) {
       case 0:
         SetMessage("Book and CD refreshed!");
@@ -110,6 +111,7 @@ void MainWindow::LoadPerson(QString q){
     }
 }
 
+//OPEN DIALOG BASE ON MEDIA TYPE
 void MainWindow::onMediaDoubleClicked(const QModelIndex &index){
     QModelIndexList indexList = ui->BookTable->selectionModel()->selectedIndexes();
 

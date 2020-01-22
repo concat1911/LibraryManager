@@ -9,6 +9,7 @@ BookDialog::BookDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::BookDialog)
 {
+    //DIALOG UI SETTINGS
     ui->setupUi(this);
     ui->bookQuantity->setValidator(new QIntValidator(this));
     ui->bookPage->setValidator(new QIntValidator(this));
